@@ -18,9 +18,12 @@ let printer = new ThermalPrinter.printer({
 export default async function imprimeNota(nota) {
     try {
         console.log("Impressão iniciada");
-        //printer.alignCenter();
-        //await printer.printImage(__dirname+"/../public/icons8-alta-prioridade-50.png");
-        //printer.drawLine();
+        printer.alignCenter();
+        printer.setTextSize(3,3);
+        printer.println(nota.title);
+        printer.setTextNormal();
+        printer.drawLine();
+        printer.alignLeft();
         const paragrafos = nota.conteudo.split("</p>");
         for (let i = 0; i < paragrafos.length; i++) {
             paragrafos[i] = paragrafos[i].replace(/<[^>]*>/g, "");
